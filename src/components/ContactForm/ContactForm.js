@@ -1,13 +1,19 @@
-// import React, { Component } from "react";
-// import { useEffect, useState } from "react";
-import useLocalStorage from "../hooks/hooks";
+import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+// import useLocalStorage from "../hooks/hooks";
 const { v4: uuidv4 } = require("uuid");
 
 ///
 function ContactForm({ onSubmit }) {
-  const [name, setName] = useLocalStorage("email", "");
-  const [number, setNumber] = useLocalStorage("number", "");
+  // const [name, setName] = useLocalStorage("name", "");
+  // const [number, setNumber] = useLocalStorage("number", "");
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
 
+  useEffect(() => {
+    window.localStorage.setItem("name", JSON.stringify(name));
+    window.localStorage.setItem("number", JSON.stringify(number));
+  }, [name, number]);
   const handleChange = (e) => {
     const { name, value } = e.currentTarget;
     switch (name) {
@@ -79,6 +85,9 @@ function ContactForm({ onSubmit }) {
     </form>
   );
 }
+ContactForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
 export default ContactForm;
 // class ContactForm extends Component {
 
