@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import ContactItem from "./ContactItem";
+import contactsActions from "../../redux/contacts-actions";
 
 //////
 const ContactList = ({ contacts, onBtnDelete }) => (
@@ -30,5 +32,25 @@ ContactList.protoTypes = {
   ),
   onBtnDelete: PropTypes.func.isRequired,
 };
-export default ContactList;
+
+//"selector"
+const filterContacts = (allContacts, filter) => {
+  const normalizeFilter = filter.toLowerCase();
+  return allContacts.filter((el) =>
+    el.name.toLowerCase().includes(normalizeFilter)
+  );
+};
+const mapStateToProps = ({ contacts: { items, filter } }) => ({
+  contacts: filterContacts(items, filter),
+});
+const mapDispatchToProps = (dispatch) => ({
+  onBtnDelete: (id) => dispatch(contactsActions.deleteContact(id)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
+
 // =========
+// const mapStateToProps = (state) => {
+//   const { filter, items } = state.contacts;
+//   const fitredContacts = filterContacts(items, filter);
+//   return { contacts: fitredContacts };
+// };

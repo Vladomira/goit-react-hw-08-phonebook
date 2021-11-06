@@ -29,29 +29,32 @@ function App() {
     setContacts((prevState) => [...prevState, ...newData]);
   };
 
-  const filterContacts = () => {
-    const normalizeFilter = contactsFilter.toLowerCase();
-    return contacts.filter((el) =>
-      el.name.toLowerCase().includes(normalizeFilter)
-    );
-  };
+  // const filterContacts = () => {
+  //   const normalizeFilter = contactsFilter.toLowerCase();
+  //   return contacts.filter((el) =>
+  //     el.name.toLowerCase().includes(normalizeFilter)
+  //   );
+  // };
 
   const onFilterChange = (e) => {
     setContactsFilter(e.currentTarget.value);
   };
-  const onDeleteContact = (contactId) => {
-    setContacts(contacts.filter((contact) => contact.id !== contactId));
-  };
+  // const onDeleteContact = (contactId) => {
+  //   setContacts(contacts.filter((contact) => contact.id !== contactId));
+  // };
 
-  const contactsData = filterContacts();
+  // const contactsData = filterContacts();
   return (
     <div className="container">
       <h1 className="header">Phonebook</h1>
       <ContactForm onSubmit={formSubmit} />
 
       <h2 className="contacts__title">Contacts</h2>
-      <Filter value={onFilterChange} filter={contactsFilter} />
-      <ContactList contacts={contactsData} onBtnDelete={onDeleteContact} />
+      <Filter onChange={onFilterChange} filter={contactsFilter} />
+      <ContactList
+      // contacts={contactsData}
+      // onBtnDelete={onDeleteContact}
+      />
     </div>
   );
 }
