@@ -1,13 +1,25 @@
 import { useState } from "react";
-import { connect } from "react-redux";
-import contactsActions from "../../redux/contacts-actions";
-import PropTypes from "prop-types";
+import { useSelector, useDispatch } from "react-redux";
+import actions from "../../redux/contacts-actions";
+import { getContacts } from "../../redux/selector";
+// import { getContacts } from "../../redux/selector";
+
 const { v4: uuidv4 } = require("uuid");
 
-///
-function ContactForm({ onSubmit }) {
+function ContactForm() {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
+  const contacts = useSelector(getContacts);
+  const dispatch = useDispatch();
+
+  const doubleName = (name) =>
+    contacts.find((el) => {
+      return el.name === name;
+    });
+  const doubleNumber = (number) =>
+    contacts.find((el) => {
+      return el.number === number;
+    });
 
   const handleChange = (e) => {
     const { name, value } = e.currentTarget;
@@ -24,11 +36,21 @@ function ContactForm({ onSubmit }) {
     }
   };
 
+  // const doubleName = contacts.map((el) => console.log(el.name));
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(name, number);
-
     reset();
+    if (doubleName(name)) {
+      return alert(`This ${name} already exist in database`);
+    }
+    if (doubleNumber(number)) {
+      return alert(`This ${number} already exist in database`);
+    }
+
+    dispatch(actions.addContact(name, number));
+
+    return;
   };
 
   const reset = () => {
@@ -80,11 +102,5 @@ function ContactForm({ onSubmit }) {
     </form>
   );
 }
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
-const mapDispatchToProps = (dispatch) => ({
-  onSubmit: (name, number) =>
-    dispatch(contactsActions.addContact(name, number)),
-});
-export default connect(null, mapDispatchToProps)(ContactForm);
+
+export default ContactForm;
