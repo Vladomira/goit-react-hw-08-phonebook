@@ -1,31 +1,65 @@
 import { createAction } from "@reduxjs/toolkit";
 
-const { v4: uuidv4 } = require("uuid");
+export const fetchContacts = createAction("contact/fetchContact");
+export const addContact = createAction("contact/addContact");
+export const deleteContact = createAction("contact/deleteContact");
 
-const addContact = createAction("contact/add", (name, number) => ({
-  payload: { id: uuidv4(), name, number },
-}));
-
-const deleteContact = createAction("contact/delete");
-
-const filtredContacts = createAction("contact/changeFilter");
-
-const actions = { addContact, deleteContact, filtredContacts };
-
-export default actions;
-
+export const filtredContacts = createAction("contact/changeFilter");
+// export const fetchContactsRequest = createAction(
+//   "contacts/fetchContactsRequest"
+// );
 //
-// const addContact = (name, number) => ({
-//   type: types.ADD,
+// export const fetchContactsSuccess = createAction(
+//   "contacts/fetchContactsSuccess"
+// );
+//
+// export const fetchContactsError = createAction("contacts/fetchContactsError");
+
+// export const addContactsRequest = createAction("contacts/addContactRequest");
+// export const addContactsSuccess = createAction("contacts/addContactSuccess");
+// export const addContactsError = createAction("contacts/addContactError");
+
+// export const deleteContactsRequest = createAction(
+//   "contacts/deleteContactRequest"
+// );
+// export const deleteContactsSuccess = createAction(
+//   "contacts/deleteContactSuccess"
+// );
+// export const deleteContactsError = createAction("contacts/deleteContactError");
+
+// const actions = {
+//   addContactsRequest,
+//   addContactsSuccess,
+//   addContactsError,
+
+//   deleteContactsRequest,
+//   deleteContactsSuccess,
+//   deleteContactsError,
+
+//   fetchContactsRequest,
+//   fetchContactsSuccess,
+//   fetchContactsError,
+
+//   deleteContact,
+//   filtredContacts,
+// };
+
+// export default actions;
+
+// const addContact = createAction("contact/add", (name, number) => ({
 //   payload: { id: uuidv4(), name, number },
-// });
+// }));
 
-// const deleteContact = (contactId) => ({
-//   type: types.DELETE,
-//   payload: contactId,
-// });
+// axios.defaults.baseURL = "https://6192166f41928b00176902b2.mockapi.io/contacts";
+// const addContact = (name, number) => (dispatch) => {
+//   const contact = { name, number, completed: false };
 
-// const filtredContacts = (value) => ({
-//   type: types.CHANGE_FILTER,
-//   payload: value,
-// });
+//   dispatch({ type: "contacts/addContactRequest" });
+//   axios
+//     .post("/contacts", contact)
+//     .then((response) => {
+//       console.log(response, "response");
+//       dispatch({ type: "contacts/addContactSuccess", payload: response.data });
+//     })
+//     .catch((error) => dispatch(error));
+// };

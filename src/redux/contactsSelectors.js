@@ -1,5 +1,8 @@
-export const getFiltredValue = (state) => state.contacts.filter;
+import { createSelector } from "reselect";
+
 export const getContacts = (state) => state.contacts.items;
+export const getFiltredValue = (state) => state.contacts.filter;
+export const getLoading = (state) => state.contacts.isLoading;
 
 export const getVisibleContacts = (state) => {
   const allContacts = getContacts(state);
@@ -10,3 +13,7 @@ export const getVisibleContacts = (state) => {
     el.name.toLowerCase().includes(normalizeFilter)
   );
 };
+// export const getVisibleContacts = createSelector(
+//   [getContacts, getFiltredValue],
+//   (items, filter) => items.filter(items.name.toLowerCase().includes(filter))
+// );

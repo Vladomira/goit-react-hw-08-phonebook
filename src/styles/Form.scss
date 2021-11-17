@@ -48,7 +48,7 @@
     transition: transform 250 cubic-bezier(0.23, 1, 0.32, 1),
       color 250 cubic-bezier(0.23, 1, 0.32, 1),
       background-color 250 cubic-bezier(0.23, 1, 0.32, 1);
-    &:hover,
+    // &:hover,
     &:focus {
       transform: scale(1.1);
       background-color: rgb(172, 8, 71);
