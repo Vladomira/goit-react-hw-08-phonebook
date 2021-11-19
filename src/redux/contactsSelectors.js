@@ -3,7 +3,26 @@ import { createSelector } from "reselect";
 export const getContacts = (state) => state.contacts.items;
 export const getFiltredValue = (state) => state.contacts.filter;
 export const getLoading = (state) => state.contacts.isLoading;
+export const getDeleting = (state) => state.contacts.isDeleting;
+// export const getDeleting = createSelector([getContacts],
+//    (items) =>
+//   // items.find((item) => {
+//   //   return item.id;
+//   // })
+// );
 
+export const getVisibleContacts = createSelector(
+  [getContacts, getFiltredValue],
+  (items, filter) => {
+    const normalizeFilter = filter.toLowerCase();
+    const showItem = items.filter((item) =>
+      item.name.toLowerCase().includes(normalizeFilter)
+    );
+    return showItem;
+  }
+);
+
+// ==
 // export const getVisibleContacts = (state) => {
 //   const allContacts = getContacts(state);
 //   const contactsFilter = getFiltredValue(state);
@@ -13,8 +32,3 @@ export const getLoading = (state) => state.contacts.isLoading;
 //     el.name.toLowerCase().includes(normalizeFilter)
 //   );
 // };
-export const getVisibleContacts = createSelector(
-  [getContacts, getFiltredValue],
-  (items, filter) =>
-    items.filter((items) => items.name.toLowerCase().includes(filter))
-);

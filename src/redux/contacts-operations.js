@@ -1,6 +1,4 @@
-// import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-
 import * as contactsActions from "./contacts-actions";
 import {
   fetchContactsApi,
@@ -14,30 +12,29 @@ export const fetchForContacts = createAsyncThunk(
   //payload-creator:
   async () => {
     const contacts = await fetchContactsApi();
-    // console.log(contacts, "contacts");
     return contacts;
   }
 );
 
 export const addContact = createAsyncThunk(
-  "contacts/addContacts", //condition
-  // contactsActions.addContact,
-  //payload-creator:
+  contactsActions.addContact,
+
   async (data) => {
-    console.log9(data);
     const { name, number } = data;
     const contact = await addContactFetch(name, number);
-    console.log9(data, "after");
+
     return contact;
   }
 );
 
 export const deleteContact = createAsyncThunk(
   contactsActions.deleteContact,
-  //payload-creator:
   async (contactId) => {
+    if (!contactId) {
+      return;
+    }
     const contact = await deleteContactFetch(contactId);
-    console.log(contact, "contact deleted");
+
     return contact;
   }
 );

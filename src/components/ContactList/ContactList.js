@@ -1,38 +1,20 @@
 import { useSelector } from "react-redux";
-// import { useEffect } from "react";
 import PropTypes from "prop-types";
-// import shortid from "shortid";
 import ContactItem from "./ContactItem";
-import { contactsSelectors } from "../../redux";
+import { getVisibleContacts } from "../../redux/contactsSelectors";
 
-const shortid = require("shortid");
-////
 function ContactList() {
-  const contacts = useSelector(contactsSelectors.getVisibleContacts);
-
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(operations.fetchForContacts);
-  // }, [dispatch]);
-  // console.log(contacts, "contacts");
+  const contacts = useSelector(getVisibleContacts);
 
   return (
-    <>
+    <section className="contacts__section">
+      <h2 className="contacts__title">Contacts</h2>
       <ul className="contacts__list">
         {contacts.map(({ name, number, id }) => {
-          return (
-            <ContactItem
-              key={shortid.generate()}
-              name={name}
-              number={number}
-              // id ={shortid.generate()}
-              id={id}
-            />
-          );
+          return <ContactItem key={id} name={name} number={number} id={id} />;
         })}
       </ul>
-    </>
+    </section>
   );
 }
 ContactList.protoTypes = {
@@ -43,7 +25,6 @@ ContactList.protoTypes = {
       number: PropTypes.number.isRequired,
     })
   ),
-  // onBtnDelete: PropTypes.func.isRequired,
 };
 
 export default ContactList;

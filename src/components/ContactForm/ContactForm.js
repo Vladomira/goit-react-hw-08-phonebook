@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import shortid from "shortid";
-import { addContact } from "../../redux/contacts-operations";
-import { getContacts } from "../../redux/contactsSelectors";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { operations, contactsSelectors } from "../../redux";
 
 function ContactForm() {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(contactsSelectors.getContacts);
   const dispatch = useDispatch();
 
   const doubleName = (name) =>
@@ -33,9 +34,6 @@ function ContactForm() {
         return;
     }
   };
-
-  // const doubleName = contacts.map((el) => console.log(el.name));
-
   const handleSubmit = (e) => {
     e.preventDefault();
     reset();
@@ -45,12 +43,20 @@ function ContactForm() {
     if (doubleNumber(number)) {
       return alert(`This ${number} already exist in database`);
     }
+    dispatch(operations.addContact({ name, number }));
 
-    dispatch(addContact(name, number));
+    toast.success(`${name} successfully added ;)`);
+    scroll();
 
     return;
   };
-
+  const scroll = () => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      // top: 1000,
+      behavior: "smooth",
+    });
+  };
   const reset = () => {
     setName("");
     setNumber("");
@@ -58,8 +64,10 @@ function ContactForm() {
   return (
     <>
       <form className="form__box" onSubmit={handleSubmit}>
-        <label className="form__label-box">
-          <span className="form__label"> Name</span>
+        <div className="form__label-box">
+          <label htmlFor={shortid.generate()} className="form__label">
+            Name
+          </label>
           <input
             className="form__input"
             value={name}
@@ -72,8 +80,8 @@ function ContactForm() {
             title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
             required
           />
-        </label>
-        <label>
+        </div>
+        <label className="form__label-box">
           <span className="form__label"> Number</span>
           <input
             className="form__input"
@@ -99,6 +107,17 @@ function ContactForm() {
           </button>
         </div>
       </form>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 }

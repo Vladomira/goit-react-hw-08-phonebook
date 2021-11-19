@@ -7,11 +7,10 @@ const store = configureStore({
   reducer: {
     contacts: contactsReducer,
   },
-  devTools: process.env.NODE_ENV === "development",
+  // devTools: process.env.NODE_ENV === "development",
 
   middleware,
 });
-
 export default store;
 
 // const contactsPersistConfig = {

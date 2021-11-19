@@ -5,6 +5,7 @@ import { operations, contactsSelectors } from "redux/index";
 import ContactForm from "./ContactForm";
 import Filter from "./Filter";
 import ContactList from "./ContactList";
+import Spinner from "../components/Loader/Spinner";
 import "../styles/index.scss";
 
 //
@@ -21,15 +22,17 @@ function App() {
     <div className="container">
       <h1 className="header">Phonebook</h1>
       <ContactForm />
-      <Filter />
 
-      <h2 className="contacts__title">Contacts</h2>
       {loading ? (
-        <p>Loading...</p>
+        <Spinner />
       ) : contacts.length > 0 ? (
-        <ContactList />
+        <>
+          <Filter />
+
+          <ContactList />
+        </>
       ) : (
-        <p>No contacts</p>
+        <p className="contacts__title">No contacts</p>
       )}
     </div>
   );

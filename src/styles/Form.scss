@@ -10,7 +10,13 @@
     align-items: center;
     color: #8d125a;
   }
-
+  &__label-box {
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
   &__label {
     font-size: 26px;
     margin-right: 10px;
