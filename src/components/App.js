@@ -15,9 +15,9 @@ const ContactsView = lazy(() => import("./Views/ContactsView"));
 //
 function App() {
   const dispatch = useDispatch();
-  // const isFetchingCurrentUser = useSelector(
-  //   authSelectors.getIsFetchingCurrrent
-  // );
+  const isFetchingCurrentUser = useSelector(
+    authSelectors.getIsFetchingCurrrent
+  );
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
@@ -25,44 +25,44 @@ function App() {
 
   return (
     <Container>
-      {/* {isFetchingCurrentUser ? (
+      {isFetchingCurrentUser ? (
         <h1>react skeleton</h1>
-      ) : ( */}
-      <>
-        <AppBar />
-        {/* <h1 className="header">Phonebook</h1> */}
-        <Switch>
-          <Suspense fallback={<p>Loading...</p>}>
-            <Route exact path="/">
-              <HomeView />
-            </Route>
-            <Route exact path="/register" component={RegisterView}></Route>
-            <Route exact path="/login" component={LogInView}></Route>
+      ) : (
+        <>
+          <AppBar />
+          {/* <h1 className="header">Phonebook</h1> */}
+          <Switch>
+            <Suspense fallback={<p>Loading...</p>}>
+              <Route exact path="/">
+                <HomeView />
+              </Route>
+              <Route exact path="/register" component={RegisterView}></Route>
+              <Route exact path="/login" component={LogInView}></Route>
 
-            {/* <PublicRoute exact path="/" >
+              {/* <PublicRoute exact path="/" >
               <HomeView />
             </PublicRoute> */}
 
-            {/* <PublicRoute exact path="/register" restricted>
-              <RegisterView />
-            </PublicRoute> */}
-            {/* 
-            <PublicRoute exact path="/login" redirectTo="/contacts" restricted>
-              <LogInView />
-            </PublicRoute>  */}
+              {/* <PublicRoute exact path="/register">
+                <RegisterView />
+              </PublicRoute> */}
 
-            <PrivateRoute
-              exact
-              path="/contacts"
-              redirectTo="/login"
-              // component={ContactsView}
-            >
-              <ContactsView />
-            </PrivateRoute>
-          </Suspense>
-        </Switch>
-      </>
-      {/* )} */}
+              {/* <PublicRoute
+                exact
+                path="/login"
+                redirectTo="/contacts"
+                restricted
+              >
+                <LogInView />
+              </PublicRoute> */}
+
+              <PrivateRoute exact path="/contacts" redirectTo="/login">
+                <ContactsView />
+              </PrivateRoute>
+            </Suspense>
+          </Switch>
+        </>
+      )}
     </Container>
   );
 }
