@@ -1,10 +1,9 @@
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
-import * as actions from "../../redux/contacts-actions";
-import { getFiltredValue } from "../../redux/contactsSelectors";
+import { contactActions, contactsSelectors } from "../../redux/contacts";
 
 const Filter = () => {
-  const value = useSelector(getFiltredValue);
+  const value = useSelector(contactsSelectors.getFiltredValue);
   const dispatch = useDispatch();
   return (
     <>
@@ -15,7 +14,9 @@ const Filter = () => {
             className="contacts__input"
             type="text"
             defaultValue={value}
-            onChange={(e) => dispatch(actions.filtredContacts(e.target.value))}
+            onChange={(e) =>
+              dispatch(contactActions.filtredContacts(e.target.value))
+            }
           ></input>
         </label>
       </div>

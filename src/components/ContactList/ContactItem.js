@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { contactsSelectors, operations } from "../../redux";
+import { contactsSelectors, operations } from "../../redux/contacts";
 
 function ContactItem({ name, number, id }) {
   const dispatch = useDispatch();

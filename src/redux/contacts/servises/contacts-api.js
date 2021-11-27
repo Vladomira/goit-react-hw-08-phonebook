@@ -18,5 +18,5 @@ export async function deleteContactFetch(contactId) {
   return contactId;
 }
 
-// const fetchAPI = { fetchContactsApi, addContactByFetch, deleteContactByFetch };
+// const fetchAPI = { fetchContactsApi, addContactFetch, deleteContactFetch };
 // export default fetchAPI;

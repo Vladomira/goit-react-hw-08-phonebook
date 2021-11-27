@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import ContactItem from "./ContactItem";
-import { getVisibleContacts } from "../../redux/contactsSelectors";
+import { getVisibleContacts } from "../../redux/contacts/contactsSelectors";
 
 function ContactList() {
   const contacts = useSelector(getVisibleContacts);

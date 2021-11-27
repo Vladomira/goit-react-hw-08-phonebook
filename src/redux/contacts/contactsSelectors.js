@@ -4,12 +4,6 @@ export const getContacts = (state) => state.contacts.items;
 export const getFiltredValue = (state) => state.contacts.filter;
 export const getLoading = (state) => state.contacts.isLoading;
 export const getDeleting = (state) => state.contacts.isDeleting;
-// export const getDeleting = createSelector([getContacts],
-//    (items) =>
-//   // items.find((item) => {
-//   //   return item.id;
-//   // })
-// );
 
 export const getVisibleContacts = createSelector(
   [getContacts, getFiltredValue],

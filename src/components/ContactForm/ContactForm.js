@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import shortid from "shortid";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { operations, contactsSelectors } from "../../redux";
+import { operations, contactsSelectors } from "../../redux/contacts";
 
 function ContactForm() {
   const [name, setName] = useState("");
@@ -64,15 +63,14 @@ function ContactForm() {
   return (
     <>
       <form className="form__box" onSubmit={handleSubmit}>
-        <div className="form__label-box">
-          <label htmlFor={shortid.generate()} className="form__label">
-            Name
-          </label>
+        <p>Contacts</p>
+        <label className="form__label-box">
+          <span className="form__label">Name</span>
           <input
             className="form__input"
             value={name}
             onChange={handleChange}
-            id={shortid.generate()}
+            // id={shortid.generate()}
             type="text"
             name="name"
             data-action="name"
@@ -80,13 +78,13 @@ function ContactForm() {
             title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
             required
           />
-        </div>
+        </label>
         <label className="form__label-box">
           <span className="form__label"> Number</span>
           <input
             className="form__input"
             onChange={handleChange}
-            id={shortid.generate()}
+            // id={shortid.generate()}
             value={number}
             type="tel"
             name="number"
