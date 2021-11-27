@@ -13,6 +13,7 @@ const RegisterView = lazy(() => import("./Views/RegisterView"));
 const LogInView = lazy(() => import("./Views/LogInView"));
 const ContactsView = lazy(() => import("./Views/ContactsView"));
 //
+// console.log("PublicRoute", PublicRoute());
 function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(
@@ -30,7 +31,7 @@ function App() {
       ) : (
         <>
           <AppBar />
-          {/* <h1 className="header">Phonebook</h1> */}
+
           <Switch>
             <Suspense fallback={<p>Loading...</p>}>
               <Route exact path="/">
@@ -42,8 +43,13 @@ function App() {
               {/* <PublicRoute exact path="/" >
               <HomeView />
             </PublicRoute> */}
-
-              {/* <PublicRoute exact path="/register">
+              {/*  */}
+              {/* <PublicRoute
+                exact
+                path="/register"
+                // redirectTo="/register"
+                restricted
+              >
                 <RegisterView />
               </PublicRoute> */}
 
@@ -56,6 +62,7 @@ function App() {
                 <LogInView />
               </PublicRoute> */}
 
+              {/*  */}
               <PrivateRoute exact path="/contacts" redirectTo="/login">
                 <ContactsView />
               </PrivateRoute>

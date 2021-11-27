@@ -62,6 +62,7 @@ function ContactForm() {
   };
   return (
     <>
+      <h1 className="header">Phonebook</h1>
       <form className="form__box" onSubmit={handleSubmit}>
         <p>Contacts</p>
         <label className="form__label-box">
