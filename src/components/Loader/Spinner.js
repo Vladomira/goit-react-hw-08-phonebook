@@ -6,15 +6,15 @@ export default class Spinner extends Component {
   render() {
     return (
       <Loader
-        type="TailSpin"
+        type="BallTriangle"
         color="#8d125a"
         height={50}
         width={50}
         timeout={3000} //3 secs
         style={{
           position: "fixed",
-          top: "55%",
-          left: "45%",
+          top: "30%",
+          left: "50%",
         }}
       />
     );

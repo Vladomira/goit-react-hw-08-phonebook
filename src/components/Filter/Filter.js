@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
+import { Form } from "react-bootstrap";
 import { contactActions, contactsSelectors } from "../../redux/contacts";
 
 const Filter = () => {
@@ -7,18 +8,21 @@ const Filter = () => {
   const dispatch = useDispatch();
   return (
     <>
-      <div>
-        <h3 className="contacts__title-find">Find contacts by name</h3>
-        <label>
-          <input
-            className="contacts__input"
+      <div className="filter__box">
+        <h3 className="contacts__title">Find contacts by name</h3>
+        <Form.Group className="mb-3" controlId="validationCustom01">
+          <Form.Control
+            className="form__input filter__input"
+            // className=""
+            placeholder="Searchig"
             type="text"
             defaultValue={value}
             onChange={(e) =>
               dispatch(contactActions.filtredContacts(e.target.value))
             }
-          ></input>
-        </label>
+          />
+        </Form.Group>
+        {/* </> */}
       </div>
     </>
   );

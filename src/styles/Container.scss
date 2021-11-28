@@ -1,14 +1,29 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-left: 15px;
-  padding-right: 15px;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  padding-left: 30px;
+  padding-right: 30px;
   width: 100%;
   margin: 0 auto;
-  // cursor: url(../img/pero.png) 2 2, auto;
 }
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: #ffcfc6;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  // background: #ffcfc6;
+}
+.header {
+  margin: 30px 8px 30px 0px;
+  font-size: 34px;
+  color: #32228f;
+
+  &__img {
+    width: 50px;
+  }
+  &__box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+  }
 }

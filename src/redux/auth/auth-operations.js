@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 import axios from "axios";
 
 axios.defaults.baseURL = "https://connections-api.herokuapp.com";
@@ -13,33 +14,38 @@ const token = {
 };
 
 const register = createAsyncThunk("auth/register", async (credentials) => {
-  console.log("credentials", credentials);
   try {
     const { data } = await axios.post("/users/signup", credentials);
     token.set(data.token);
     return data;
   } catch (error) {
+    toast.error("User with that data already exists, try again");
     return credentials.rejectWithValue();
   }
 });
 
-const logIn = createAsyncThunk("auth/login", async (credentials) => {
-  try {
-    const { data } = await axios.post("/users/login", credentials);
-    token.set(data.token);
-    return data;
-  } catch (error) {
-    console.log(error, "error login");
-  }
-});
+const logIn = createAsyncThunk(
+  "auth/login",
+  async (credentials, rejectWithValue) => {
+    try {
+      const { data } = await axios.post("/users/login", credentials);
+      token.set(data.token);
+      return data;
+    } catch (error) {
+      toast.error("Incorrect data, please try again");
 
-const logOut = createAsyncThunk("auth/logout", async () => {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+const logOut = createAsyncThunk("auth/logout", async (rejectWithValue) => {
   try {
     await axios.post("/users/logout");
     token.unset();
   } catch (error) {
-    console.log("error logout", error);
-    // TODO: Добавить обработку ошибки error.message
+    toast.error("Something went wrong");
+    return rejectWithValue(error.response.data);
   }
 });
 

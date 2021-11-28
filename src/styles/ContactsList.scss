@@ -1,5 +1,8 @@
 .contacts {
   &__section {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     padding-top: 10px;
     padding-bottom: 10px;
   }
@@ -8,11 +11,11 @@
     margin-top: 30px;
     color: #8d125a;
   }
-  &__title-find {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #8d125a;
-  }
+  // &__title-find {
+  //   text-align: center;
+  //   margin-bottom: 20px;
+  //   color: #8d125a;
+  // }
   &__input {
     font-size: 26px;
     padding: 10px 5px;
@@ -21,7 +24,10 @@
     background-color: #e2a499;
     border-color: #8d125a;
     color: #8d125a;
-
+    &--filter {
+      display: block;
+      margin: 0 auto;
+    }
     &:hover,
     &:focus {
       border-color: #8d125a;

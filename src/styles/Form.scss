@@ -1,64 +1,80 @@
-// @import "styles/shared.scss";
-
-.header {
-  text-align: center;
-  font-size: 40px;
-  color: #8d125a;
-}
 .form {
-  &__box {
-    align-items: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 50px;
+  color: #8d125a;
+  font-weight: 500;
+
+  &__header {
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 34px;
     color: #8d125a;
-  }
-  &__label-box {
-    display: flex;
-    flex-direction: column;
-    // align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
+    // font-weight: 500;
   }
   &__label {
-    font-size: 26px;
-    margin-right: 10px;
+    font-size: 22px;
   }
   &__input {
+    min-width: 350px;
     border-radius: 5px;
     font-size: 30px;
-    padding: 8px 4px;
-    background-color: #e2a499;
-    border-color: #e2a499;
-    color: #881a07;
-
-    &:hover,
-    &:focus {
-      background-color: #e2a499;
-      border-color: #ac503f;
-      outline: 2px solid #ac503f;
-    }
+    padding: 8px 6px;
+    // outline: 1px solid #8d125a;
+    // border: 1px solid #8d125a;
+    color: #8d125a;
   }
-  &__btn-thumb {
-    display: block;
-    text-align: center;
-    margin-top: 30px;
-  }
-  &__addBtn {
+  &__btn {
+    margin-top: 20px;
     width: 200px;
     height: 60px;
     border-radius: 5px;
     background-color: #8d125a;
-    color: #d3897c;
-    font-size: 20px;
-    font-weight: 500;
+    color: #e09183;
+    font-size: 23px;
+    font-weight: 700;
     transform: scale(1);
-    box-shadow: 4px 4px 10px 0px rgba(34, 60, 80, 0.2);
+    // box-shadow: 4px 4px 10px 0px rgba(34, 60, 80, 0.2);
     transition: transform 250 cubic-bezier(0.23, 1, 0.32, 1),
       color 250 cubic-bezier(0.23, 1, 0.32, 1),
       background-color 250 cubic-bezier(0.23, 1, 0.32, 1);
     // &:hover,
     &:focus {
       transform: scale(1.1);
-      background-color: rgb(172, 8, 71);
-      color: #d3897c;
+      box-shadow: 4px 4px 10px 0px rgba(34, 60, 80, 0.2);
+      background-color: #e09183;
+      color: #8d125a;
     }
   }
 }
+.filter {
+  &__box {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  &__input {
+    margin-top: 15px;
+    border-color: #8d125a;
+  }
+}
+
+// .form__contacts {
+//   display: flex;
+//   justify-content: space-around;
+
+// &--header {
+//   text-align: center;
+// }
+// &__label{
+
+// }
+// &__{
+//   input
+// }
+// }
+// .form__btn {
+//   display: block;
+//   margin: 30px auto;
+// }

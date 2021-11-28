@@ -8,7 +8,7 @@ function ContactList() {
 
   return (
     <section className="contacts__section">
-      <h2 className="contacts__title">Contacts</h2>
+      <h2 className="contacts__title">Contacts page</h2>
       <ul className="contacts__list">
         {contacts.map(({ name, number, id }) => {
           return <ContactItem key={id} name={name} number={number} id={id} />;

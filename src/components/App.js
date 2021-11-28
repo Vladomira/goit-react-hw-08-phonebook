@@ -1,10 +1,11 @@
 import { useEffect, Suspense, lazy } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Route, Switch } from "react-router";
+import { Switch } from "react-router";
 import { authOperations, authSelectors } from "../redux/auth";
+import Spinner from "./Loader/Spinner";
 import Container from "./Container/Container";
 import PrivateRoute from "./PrivateRoute";
-import PublicRoute from "./PrivateRoute";
+import PublicRoute from "./PublicRoute";
 import AppBar from "./AppBar";
 import "../styles/index.scss";
 
@@ -12,10 +13,12 @@ const HomeView = lazy(() => import("./Views/HomeView"));
 const RegisterView = lazy(() => import("./Views/RegisterView"));
 const LogInView = lazy(() => import("./Views/LogInView"));
 const ContactsView = lazy(() => import("./Views/ContactsView"));
+// const UploadView = lazy(() => import("./Views/UploadView"));
 //
-// console.log("PublicRoute", PublicRoute());
+
 function App() {
   const dispatch = useDispatch();
+
   const isFetchingCurrentUser = useSelector(
     authSelectors.getIsFetchingCurrrent
   );
@@ -27,42 +30,38 @@ function App() {
   return (
     <Container>
       {isFetchingCurrentUser ? (
-        <h1>react skeleton</h1>
+        <Spinner />
       ) : (
         <>
           <AppBar />
 
           <Switch>
-            <Suspense fallback={<p>Loading...</p>}>
-              <Route exact path="/">
+            <Suspense fallback={<Spinner />}>
+              <PublicRoute exact path="/">
                 <HomeView />
-              </Route>
-              <Route exact path="/register" component={RegisterView}></Route>
-              <Route exact path="/login" component={LogInView}></Route>
+              </PublicRoute>
 
-              {/* <PublicRoute exact path="/" >
-              <HomeView />
-            </PublicRoute> */}
-              {/*  */}
-              {/* <PublicRoute
+              <PublicRoute
                 exact
                 path="/register"
-                // redirectTo="/register"
+                redirectTo="/contacts"
                 restricted
               >
                 <RegisterView />
-              </PublicRoute> */}
+              </PublicRoute>
 
-              {/* <PublicRoute
+              <PublicRoute
                 exact
                 path="/login"
                 redirectTo="/contacts"
                 restricted
               >
                 <LogInView />
-              </PublicRoute> */}
+              </PublicRoute>
 
-              {/*  */}
+              {/* <PrivateRoute exact path="/upload" redirectTo="/login">
+                <UploadView />
+              </PrivateRoute> */}
               <PrivateRoute exact path="/contacts" redirectTo="/login">
                 <ContactsView />
               </PrivateRoute>
@@ -74,6 +73,3 @@ function App() {
   );
 }
 export default App;
-//  {/* <Route exact path="/" component={HomeView}></Route> */}
-//           {/* <Route exact path="/register" component={RegisterView}></Route>
-//           <Route exact path="/login" component={LogInForm}></Route> */}

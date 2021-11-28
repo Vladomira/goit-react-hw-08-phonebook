@@ -13,8 +13,6 @@ export default function PublicRoute({
 
   return (
     <Route {...routeProps}>
-      {/* {children} */}
-      {/* {!shouldRedirect ? children : <Redirect to={redirectTo} />} */}
       {shouldRedirect ? <Redirect to={redirectTo} /> : children}
     </Route>
   );
