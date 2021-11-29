@@ -16,14 +16,22 @@
     font-weight: 500;
     font-size: 20px;
     color: #32228f;
+    color: #1d4d14;
   }
   &__img {
     width: 90px;
   }
   &__btn {
-    border-color: #32228f;
-    color: #32228f;
+    color: #8d125a;
+    border-color: #8d125a;
     margin-top: 10px;
     padding: 7px 40px;
+    &:hover,
+    &:focus {
+      border-color: transparent;
+      background-color: #8d125a;
+      color: #e4988b;
+      color: #fff;
+    }
   }
 }

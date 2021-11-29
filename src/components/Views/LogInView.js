@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
-import { Form } from "react-bootstrap";
+import { Form, Col, FloatingLabel } from "react-bootstrap";
 import { authOperations } from "../../redux/auth";
 
 function LogInView() {
@@ -40,8 +40,8 @@ function LogInView() {
     <>
       <form className="form" onSubmit={handleSubmit}>
         <p className="form__header">Log in Form</p>
-        <Form.Group className="mb-3" controlId="formGroupEmail">
-          <Form.Label className="form__label">Email address</Form.Label>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label className="form__label">Email</Form.Label>
           <Form.Control
             className="form__input"
             onChange={handleChange}
@@ -49,15 +49,15 @@ function LogInView() {
             type="email"
             name="email"
             placeholder="name@example.com"
-            // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            // title="Номер телефона должен состоять из цифр, и может содержать пробелы, тире, круглые скобки, и может начинаться с +"
             required
           />
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formGroupPassword">
+        <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label className="form__label">Password</Form.Label>
-          {/* <Col sm="10"> */}
           <Form.Control
             placeholder="password"
             className="form__input"
@@ -65,11 +65,8 @@ function LogInView() {
             value={password}
             type="password"
             name="password"
-            // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            // title="Номер телефона должен состоять из цифр, и может содержать пробелы, тире, круглые скобки, и может начинаться с +"
             required
           />
-          {/* </Col> */}
         </Form.Group>
 
         <div className="form__btn-thumb">
@@ -87,29 +84,3 @@ function LogInView() {
 }
 
 export default LogInView;
-// {/* <label className="form__label-box">
-// <span className="form__label"> Password</span>
-// <input
-//   className="form__input"
-//   onChange={handleChange}
-//   id={shortid.generate()}
-//   value={password}
-//   type="password"
-//   name="password"
-//   // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-//   // title="Номер телефона должен состоять из цифр, и может содержать пробелы, тире, круглые скобки, и может начинаться с +"
-//   required
-// />
-// </label> */}
-
-// const getName = useSelector(authSelectors.getUsername);
-
-// const history = useHistory();
-// const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
-
-// useEffect(() => {
-//   if (isLoggedIn) {
-//     // toast.success(`You entered in system as ${getName}`);
-//     setTimeout(() => history.push("/contacts"), 2000);
-//   }
-// });

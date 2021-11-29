@@ -49,7 +49,10 @@ const authSlice = createSlice({
       state.isFetchingCurrentUser = false;
     },
     [authOperations.fetchCurrentUser.rejected](state) {
+      state.user = { name: null, email: null };
+
       state.isFetchingCurrentUser = false;
+      state.isLoggedIn = false;
     },
   },
 });

@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import ContactItem from "./ContactItem";
+import { ListGroup } from "react-bootstrap";
 import { getVisibleContacts } from "../../redux/contacts/contactsSelectors";
 
 function ContactList() {
@@ -8,12 +9,12 @@ function ContactList() {
 
   return (
     <section className="contacts__section">
-      <h2 className="contacts__title">Contacts page</h2>
-      <ul className="contacts__list">
+      <ListGroup variant="flush" className="contacts__list">
+        <h2 className="contacts__title">Contacts </h2>
         {contacts.map(({ name, number, id }) => {
           return <ContactItem key={id} name={name} number={number} id={id} />;
         })}
-      </ul>
+      </ListGroup>
     </section>
   );
 }

@@ -2,17 +2,19 @@ import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ListGroup, Button } from "react-bootstrap";
+import deletingImg from "../images/trash2.png";
 import { contactsSelectors, operations } from "../../redux/contacts";
 
 function ContactItem({ name, number, id }) {
   const dispatch = useDispatch();
   const deleting = useSelector(contactsSelectors.getDeleting);
-
+  const removeImg = deletingImg;
   return (
     <>
-      <li id={id} key={id} className="contacts__item">
-        {name}: <span className="contacts__number"> {number}</span>
-        <button
+      <ListGroup.Item id={id} key={id} className="contacts__item">
+        <Button
+          variant="outline-danger"
           className="contacts__btn"
           disabled={deleting}
           onClick={() => {
@@ -20,9 +22,12 @@ function ContactItem({ name, number, id }) {
             toast.success(`${name} removed ;)`);
           }}
         >
-          Delete
-        </button>
-      </li>
+          <img className="contacts__remove-img" src={removeImg} alt="" />
+          {/* Delete */}
+        </Button>
+        <span className="contacts__name">{name}:</span>
+        <span className="contacts__number">{number}</span>
+      </ListGroup.Item>
       <ToastContainer
         position="top-right"
         autoClose={2000}

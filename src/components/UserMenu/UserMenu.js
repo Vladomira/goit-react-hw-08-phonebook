@@ -20,7 +20,7 @@ export default function UserMenu() {
             onClick={() => dispatch(authOperations.logOut())}
             className="user__btn"
           >
-            Out
+            Log out
           </Button>
         </div>
       </div>

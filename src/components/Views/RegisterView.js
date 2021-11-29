@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Form } from "react-bootstrap";
+import { Form, FloatingLabel } from "react-bootstrap";
 import { authOperations, authSelectors } from "../../redux/auth";
 
 export default function RegisterView() {
@@ -54,9 +54,10 @@ export default function RegisterView() {
   return (
     <>
       <form className="form" onSubmit={handleSubmit}>
-        <p className="form__header">Register Form</p>
-        <Form.Group className="mb-3" controlId="validationCustom01">
-          <Form.Label className="form__label">Name</Form.Label>
+        <p className="form__header">Register</p>
+
+        <FloatingLabel controlId="floatingName" className="mb-3" label="Name">
+          {/* <Form.Label className="form__label">Name</Form.Label> */}
           <Form.Control
             className="form__input"
             placeholder="Enter your name"
@@ -69,25 +70,27 @@ export default function RegisterView() {
             title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
             required
           />
-        </Form.Group>
+        </FloatingLabel>
 
-        <Form.Group className="mb-3" controlId="formGroupEmail">
-          <Form.Label className="form__label">Email address</Form.Label>
+        <FloatingLabel
+          controlId="floatingInput"
+          label="Email address"
+          className="mb-3"
+        >
+          {/* <Form.Label className="form__label">Email address</Form.Label> */}
           <Form.Control
-            placeholder="Enter email"
+            placeholder="name@example.com"
             className="form__input"
             onChange={handleChange}
             value={email}
             type="email"
             name="email"
-            // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            // title="Номер телефона должен состоять из цифр, и может содержать пробелы, тире, круглые скобки, и может начинаться с +"
             required
           />
-        </Form.Group>
+        </FloatingLabel>
 
-        <Form.Group className="mb-3" controlId="formGroupPassword ">
-          <Form.Label className="form__label">Password</Form.Label>
+        <FloatingLabel controlId="floatingPassword" label="Password">
+          {/* <Form.Label className="form__label">Password</Form.Label> */}
           <Form.Control
             placeholder="Password"
             className="form__input"
@@ -95,11 +98,9 @@ export default function RegisterView() {
             value={password}
             type="password"
             name="password"
-            // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            // title="Номер телефона должен состоять из цифр, и может содержать пробелы, тире, круглые скобки, и может начинаться с +"
             required
           />
-        </Form.Group>
+        </FloatingLabel>
 
         {/* <div className="form__btn-thumb"> */}
         <button

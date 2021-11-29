@@ -4,62 +4,28 @@
     align-items: center;
     flex-direction: column;
     padding-top: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 80px;
   }
   &__title {
     text-align: center;
-    margin-top: 30px;
-    color: #8d125a;
-  }
-  // &__title-find {
-  //   text-align: center;
-  //   margin-bottom: 20px;
-  //   color: #8d125a;
-  // }
-  &__input {
-    font-size: 26px;
-    padding: 10px 5px;
-    border-radius: 5px;
-    font-weight: 500;
-    background-color: #e2a499;
-    border-color: #8d125a;
-    color: #8d125a;
-    &--filter {
-      display: block;
-      margin: 0 auto;
-    }
-    &:hover,
-    &:focus {
-      border-color: #8d125a;
-      outline: 2px solid #8d125a;
-    }
+    margin-bottom: 20px;
+    color: #32228f;
   }
 
   &__list {
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-    border-color: #8d125a;
+    margin-top: 15px;
+    padding: 30px 20px;
+    padding-bottom: 20px;
+    border: 1px solid #32228f;
     border-radius: 5px;
-    // background-color: #ffff;
   }
   &__item {
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
+    align-items: center;
 
     font-size: 26px;
     font-weight: 500;
-    padding-bottom: 15px;
-    padding-top: 15px;
-    padding-right: 15px;
-    padding-left: 15px;
-    border-radius: 5px;
-    color: #8d125a;
-    box-shadow: 4px 4px 10px -3px rgba(34, 60, 80, 0.2);
-    background-color: #e2a499;
+    color: #32228f;
 
     &:not(:last-child) {
       margin-bottom: 15px;
@@ -68,27 +34,29 @@
   &__number {
     margin-left: 3px;
   }
+  &__name {
+    margin-right: 8px;
+  }
+  &__remove-img {
+    width: 28px;
+  }
 
   &__btn {
-    width: 120px;
-    height: 50px;
     border-radius: 5px;
-    margin-left: 20px;
+    margin-right: 35px;
     transform: scale(1);
-    background-color: #da8f81;
     color: #8d125a;
     border-color: #8d125a;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 500;
     box-shadow: 4px 4px 10px -3px rgba(34, 60, 80, 0.2);
-    transition: color 250 cubic-bezier(0.23, 1, 0.32, 1),
-      transform 250 cubic-bezier(1, 0, 0, 1),
-      background-color 250 cubic-bezier(0.23, 1, 0.32, 1);
+
     &:hover,
     &:focus {
-      background-color: #8f1749;
-      color: #d3897c;
-      transform: scale(1.2);
+      border-color: transparent;
+      background-color: #8d125a;
+      color: #e4988b;
+      transform: scale(1.1);
     }
   }
 }
