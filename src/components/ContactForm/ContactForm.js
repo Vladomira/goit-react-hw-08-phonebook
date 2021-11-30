@@ -115,15 +115,14 @@ function ContactForm() {
           </div>
         </div>
         <div>
-          <Button
-            variant="outline-danger"
+          <button
             className="form__btn"
             color="primary"
             type="submit"
             disabled={!number || !name}
           >
             Add contact
-          </Button>
+          </button>
         </div>
       </form>
       <ToastContainer

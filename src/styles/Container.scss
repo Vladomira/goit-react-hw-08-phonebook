@@ -12,18 +12,3 @@ body {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   // background: #ffcfc6;
 }
-.header {
-  margin: 30px 8px 30px 0px;
-  font-size: 34px;
-  color: #32228f;
-
-  &__img {
-    width: 50px;
-  }
-  &__box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10px;
-  }
-}

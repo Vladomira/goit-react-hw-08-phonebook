@@ -38,13 +38,22 @@
     font-size: 23px;
     font-weight: 700;
     scale: 1;
-
+    transition: transform 200ms cubic-bezier(0.17, 0.67, 0.83, 0.67),
+      box-shadow 200ms cubic-bezier(0.17, 0.67, 0.83, 0.67),
+      color 200ms cubic-bezier(0.17, 0.67, 0.83, 0.67),
+      background-color 200ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
+    &:hover,
     &:focus {
       transform: scale(1.075);
       border-color: transparent;
       box-shadow: 4px 4px 10px 0px rgba(34, 60, 80, 0.2);
       background-color: #8d125a;
       color: #e4988b;
+    }
+    &:disabled {
+      border: 1px solid #496644;
+      background-color: #cccccc;
+      color: #496644;
     }
   }
 }
@@ -68,7 +77,6 @@
 
 .form__contacts {
   display: flex;
-  // align-items: center;
   justify-content: center;
 
   &--header {
