@@ -9,11 +9,9 @@ const Filter = () => {
   return (
     <>
       <div className="filter__box">
-        {/* <h3 className=" filter__title">Find contacts by name</h3> */}
         <Form.Group className="mb-3" controlId="validationCustom01">
           <Form.Control
             className="form__input filter__input"
-            // className=""
             placeholder="Searchig"
             type="text"
             defaultValue={value}
@@ -22,7 +20,6 @@ const Filter = () => {
             }
           />
         </Form.Group>
-        {/* </> */}
       </div>
     </>
   );

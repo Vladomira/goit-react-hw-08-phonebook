@@ -39,11 +39,3 @@ export default function Navigation() {
     </>
   );
 }
-//  {/* <NavLink
-//             to="/upload"
-//             exact
-//             className="nav__item"
-//             activeClassName="nav__item--active"
-//           >
-//             To load
-//           </NavLink> */}

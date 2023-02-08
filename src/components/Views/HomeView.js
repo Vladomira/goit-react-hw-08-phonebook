@@ -1,5 +1,4 @@
 import React from "react";
-// import { ListGroup } from "react-bootstrap";
 import Picture from "../images/phone.png";
 const img = Picture;
 
@@ -25,20 +24,15 @@ const HomeView = () => (
           </p>
         </li>
         <li className="home__item list">
-          <p className="home__paragraph">
-            Create your list of contacts
-            {/* <span className="logo__text">Phonebook</span> */}
-          </p>
+          <p className="home__paragraph">Create your list of contacts</p>
         </li>
         <li className="home__item list">
           <p className="home__paragraph">
             Add or remove contacts from your contact list
-            {/* <span className="logo__text">Phonebook</span> */}
           </p>
         </li>
       </ul>
     </div>
-    {/* <p>You can create your own list for contacts</p> */}
   </>
 );
 

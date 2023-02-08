@@ -1,9 +1,6 @@
-// import { useState } from "react";
 import axios from "axios";
 
 export default function UploadView() {
-  // const [selected, setSelected] = useState();
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const file = e.target.file.input.files[0];

@@ -23,7 +23,6 @@ function ContactItem({ name, number, id }) {
           }}
         >
           <img className="contacts__remove-img" src={removeImg} alt="" />
-          {/* Delete */}
         </Button>
         <span className="contacts__name">{name}:</span>
         <span className="contacts__number">{number}</span>

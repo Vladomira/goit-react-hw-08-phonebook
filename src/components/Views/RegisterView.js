@@ -5,11 +5,15 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Form, FloatingLabel } from "react-bootstrap";
 import { authOperations, authSelectors } from "../../redux/auth";
+import { isPasswordError } from "helpers/handler-passwordError";
+import { PasswordLabel } from "components/PasswordLabel/PasswordLabel";
+import { UserForm } from "components/UserForm";
 
 export default function RegisterView() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
@@ -20,6 +24,14 @@ export default function RegisterView() {
       setTimeout(() => history.push("/contacts"), 2000);
     }
   }, [isLoggedIn, history, name]);
+
+  useEffect(() => {
+    isPasswordError(password, setPasswordError, null);
+  }, [password]);
+
+  const onBlur = ({ target: { value } }) => {
+    isPasswordError(value, setPasswordError, true);
+  };
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -36,81 +48,50 @@ export default function RegisterView() {
         return;
     }
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
     dispatch(authOperations.register({ name, email, password }));
 
     reset();
-
     return;
   };
-
   const reset = () => {
+    setPasswordError(false);
     setName("");
     setPassword("");
     setEmail("");
   };
+  const disabled =
+    !email.length > 0 ||
+    !name.length > 0 ||
+    !password.length > 0 ||
+    passwordError;
+
   return (
     <>
       <form className="form" onSubmit={handleSubmit}>
         <p className="form__header">Register</p>
-
-        <FloatingLabel controlId="floatingName" className="mb-3" label="Name">
-          {/* <Form.Label className="form__label">Name</Form.Label> */}
-          <Form.Control
-            className="form__input"
-            placeholder="Enter your name"
-            value={name}
-            onChange={handleChange}
-            type="text"
-            name="name"
-            data-action="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-            required
-          />
-        </FloatingLabel>
-
-        <FloatingLabel
-          controlId="floatingInput"
-          label="Email address"
-          className="mb-3"
-        >
-          {/* <Form.Label className="form__label">Email address</Form.Label> */}
-          <Form.Control
-            placeholder="name@example.com"
-            className="form__input"
-            onChange={handleChange}
-            value={email}
-            type="email"
-            name="email"
-            required
-          />
-        </FloatingLabel>
+        <UserForm name={name} email={email} handleChange={handleChange} />
 
         <FloatingLabel controlId="floatingPassword" label="Password">
-          {/* <Form.Label className="form__label">Password</Form.Label> */}
           <Form.Control
             placeholder="Password"
             className="form__input"
             onChange={handleChange}
+            onBlur={onBlur}
             value={password}
             type="password"
             name="password"
             required
+            autoComplete="false"
           />
+          <PasswordLabel passwordError={passwordError} />
         </FloatingLabel>
 
-        {/* <div className="form__btn-thumb"> */}
-        <button
-          className="form__btn"
-          type="submit"
-          disabled={!email || !name || !password}
-        >
+        <button className="form__btn" type="submit" disabled={disabled}>
           Sign up
         </button>
-        {/* </div> */}
       </form>
       <ToastContainer
         position="top-right"
@@ -126,20 +107,3 @@ export default function RegisterView() {
     </>
   );
 }
-
-////////////////
-// const doubleName = (name) =>
-//   contacts.find((el) => {
-//     return el.name === name;
-//   });
-// const doubleNumber = (number) =>
-//   contacts.find((el) => {
-//     return el.number === number;
-//   });
-
-// if (doubleName(name)) {
-//   return alert(`This ${name} already exist in database`);
-// }
-// if (doubleNumber(number)) {
-//   return alert(`This ${number} already exist in database`);
-// }

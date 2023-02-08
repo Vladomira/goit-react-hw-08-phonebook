@@ -13,7 +13,6 @@ const authPersistConfig = {
 
 export const store = configureStore({
   reducer: {
-    // auth: authReducer,
     auth: persistReducer(authPersistConfig, authReducer),
     contacts: contactsReducer,
   },
@@ -23,19 +22,3 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-
-// export default persistor;
-// export default store;
-
-// const contactsPersistConfig = {
-//   key: "contacts",
-//   storage,
-//   blacklist: ["filter"],
-// };
-
-// const persistor = persistStore(store);
-
-// const bigStore = {
-//   store,
-//   // persistor,
-// };

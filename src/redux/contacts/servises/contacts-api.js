@@ -17,6 +17,3 @@ export async function deleteContactFetch(contactId) {
   await axios.delete(`/contacts/${contactId}`);
   return contactId;
 }
-
-// const fetchAPI = { fetchContactsApi, addContactFetch, deleteContactFetch };
-// export default fetchAPI;

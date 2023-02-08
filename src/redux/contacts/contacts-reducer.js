@@ -11,7 +11,6 @@ const items = createReducer([], {
   [fetchForContacts.fulfilled]: (_, { payload }) => payload,
   [addContact.fulfilled]: (state, { payload }) => [...state, payload],
   [deleteContact.fulfilled]: (state, { payload }) =>
-    // state.filter(({ id }) => id !== payload),
     forDeleteContact(state, payload),
 });
 
@@ -55,41 +54,3 @@ export default combineReducers({
   isDeleting,
   error,
 });
-
-// const items = (state = contactsState, { type, payload }) => {
-//   switch (type) {
-//     case types.ADD:
-//       return [...state, payload];
-
-//     case types.DELETE:
-//       return state.filter(({ id }) => id !== payload);
-
-//     default:
-//       return state;
-//   }
-// };
-
-// const filter = (state = "", { type, payload }) => {
-//   switch (type) {
-//     case "contact/changeFilter":
-//       return payload;
-
-//     default:
-//       return state;
-//   }
-// };
-/// import {
-//   // addContactsRequest,
-//   // addContactsSuccess,
-//   // addContactsError,
-//   fetchContact,
-//   addContact,
-//   deleteContact,
-//   filtredContacts,
-//   // deleteContactsRequest,
-//   // deleteContactsSuccess,
-//   // deleteContactsError,
-//   // fetchContactsRequest,
-//   // fetchContactsSuccess,
-//   // fetchContactsError,
-// } from "./contacts-actions";

@@ -2,16 +2,13 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import InputMask from "react-input-mask";
-import { Form, Button } from "react-bootstrap";
-import logoPhone from "../images/phone.png";
+import { Form } from "react-bootstrap";
 import { operations, contactsSelectors } from "../../redux/contacts";
 
 function ContactForm() {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const contacts = useSelector(contactsSelectors.getContacts);
-  const logo = logoPhone;
   const dispatch = useDispatch();
 
   const doubleName = (name) =>
@@ -56,7 +53,6 @@ function ContactForm() {
   const scroll = () => {
     window.scrollTo({
       top: document.documentElement.scrollHeight,
-      // top: 1000,
       behavior: "smooth",
     });
   };
@@ -71,7 +67,6 @@ function ContactForm() {
           <p className="form__header form__contacts--header logo__text">
             Your contacts
           </p>
-          {/* <img className="logo__img" src={logo} alt="" /> */}
         </div>
 
         <div className="form__contacts">

@@ -13,16 +13,19 @@ const token = {
   },
 };
 
-const register = createAsyncThunk("auth/register", async (credentials) => {
-  try {
-    const { data } = await axios.post("/users/signup", credentials);
-    token.set(data.token);
-    return data;
-  } catch (error) {
-    toast.error("User with that data already exists, try again");
-    return credentials.rejectWithValue();
+const register = createAsyncThunk(
+  "auth/register",
+  async (credentials, rejectWithValue) => {
+    try {
+      const { data } = await axios.post("/users/signup", credentials);
+      token.set(data.token);
+      return data;
+    } catch (error) {
+      toast.error("Something went wrong");
+      return rejectWithValue(error.response.data);
+    }
   }
-});
+);
 
 const logIn = createAsyncThunk(
   "auth/login",
@@ -30,6 +33,7 @@ const logIn = createAsyncThunk(
     try {
       const { data } = await axios.post("/users/login", credentials);
       token.set(data.token);
+
       return data;
     } catch (error) {
       toast.error("Incorrect data, please try again");
