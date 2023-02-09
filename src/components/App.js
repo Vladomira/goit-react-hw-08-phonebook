@@ -1,6 +1,7 @@
 import { useEffect, Suspense, lazy } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Switch } from "react-router";
+import { Helmet } from "react-helmet";
 import { authOperations, authSelectors } from "../redux/auth";
 import Spinner from "./Loader/Spinner";
 import Container from "./Container/Container";
@@ -27,6 +28,10 @@ function App() {
 
   return (
     <Container>
+      <Helmet>
+        <title>Phonebook</title>
+        <meta name="description" content="Contacts Phonebook" />
+      </Helmet>
       {isFetchingCurrentUser ? (
         <Spinner />
       ) : (
