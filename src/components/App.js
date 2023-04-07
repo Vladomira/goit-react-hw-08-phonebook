@@ -36,13 +36,14 @@ function App() {
         <Spinner />
       ) : (
         <>
-          <AppBar />
           <Routes>
-            <Route index path="/" element={<HomeView />} />
-            <Route index path="*" element={<NotFoundPage />} />
-            <Route path="login" element={<LogInView />} />
-            <Route path="contacts" element={<ContactsView />} />
-            <Route path="register" element={<RegisterView />} />
+            <Route path="/" element={<AppBar />}>
+              <Route index path="/" element={<HomeView />} />
+              <Route index path="*" element={<NotFoundPage />} />
+              <Route path="login" element={<LogInView />} />
+              <Route path="contacts" element={<ContactsView />} />
+              <Route path="register" element={<RegisterView />} />
+            </Route>
           </Routes>
         </>
       )}
