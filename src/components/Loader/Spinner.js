@@ -1,10 +1,10 @@
-import Loader from "react-loader-spinner";
+import { BallTriangle } from "react-loader-spinner";
 import { Component } from "react";
 
-export default class Spinner extends Component {
+class Spinner extends Component {
   render() {
     return (
-      <Loader
+      <BallTriangle
         type="BallTriangle"
         color="#8d125a"
         height={50}
@@ -19,3 +19,4 @@ export default class Spinner extends Component {
     );
   }
 }
+export default Spinner;

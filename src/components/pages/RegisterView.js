@@ -1,17 +1,21 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Form } from "react-bootstrap";
+import { Form, FloatingLabel } from "react-bootstrap";
 import { authOperations } from "../../redux/auth";
-import { PasswordLabel } from "components/PasswordLabel/PasswordLabel";
 import { isPasswordError } from "helpers/handler-passwordError";
+import { PasswordLabel } from "components/PasswordLabel/PasswordLabel";
+import { UserForm } from "components/UserForm";
 
-function LogInView() {
+export default function RegisterView() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const dispatch = useDispatch();
   const [passwordError, setPasswordError] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     isPasswordError(password, setPasswordError, null);
@@ -21,9 +25,11 @@ function LogInView() {
     isPasswordError(value, setPasswordError, true);
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.currentTarget;
+  const handleChange = ({ target: { name, value } }) => {
     switch (name) {
+      case "name":
+        return setName(value);
+
       case "email":
         return setEmail(value);
 
@@ -38,41 +44,34 @@ function LogInView() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(authOperations.logIn({ email, password }));
-
+    dispatch(authOperations.register({ name, email, password }));
+    toast.success(`You registred  as ${name}`);
     reset();
+    setTimeout(() => navigate("/contacts"), 2000);
 
     return;
   };
-
   const reset = () => {
-    setEmail("");
+    setPasswordError(false);
+    setName("");
     setPassword("");
+    setEmail("");
   };
+  const disabled =
+    !email.length > 0 ||
+    !name.length > 0 ||
+    !password.length > 0 ||
+    passwordError;
+
   return (
     <>
       <form className="form" onSubmit={handleSubmit}>
-        <p className="form__header">Log in Form</p>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label className="form__label">Email</Form.Label>
-          <Form.Control
-            className="form__input"
-            onChange={handleChange}
-            value={email}
-            type="email"
-            name="email"
-            placeholder="name@example.com"
-            required
-          />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
+        <p className="form__header">Register</p>
+        <UserForm name={name} email={email} handleChange={handleChange} />
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label className="form__label">Password</Form.Label>
+        <FloatingLabel controlId="floatingPassword" label="Password">
           <Form.Control
-            placeholder="password"
+            placeholder="Password"
             className="form__input"
             onChange={handleChange}
             onBlur={onBlur}
@@ -80,21 +79,14 @@ function LogInView() {
             type="password"
             name="password"
             required
+            autoComplete="false"
           />
           <PasswordLabel passwordError={passwordError} />
-        </Form.Group>
+        </FloatingLabel>
 
-        <div className="form__btn-thumb">
-          <button
-            className="form__btn"
-            type="submit"
-            disabled={
-              !email.length > 0 || !password.length > 0 || passwordError
-            }
-          >
-            Log in
-          </button>
-        </div>
+        <button className="form__btn" type="submit" disabled={disabled}>
+          Sign up
+        </button>
       </form>
       <ToastContainer
         position="top-right"
@@ -110,5 +102,3 @@ function LogInView() {
     </>
   );
 }
-
-export default LogInView;

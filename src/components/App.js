@@ -1,19 +1,18 @@
-import { useEffect, Suspense, lazy } from "react";
+import { useEffect, lazy } from "react";
+import { Routes, Route } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Switch } from "react-router";
 import { Helmet } from "react-helmet";
 import { authOperations, authSelectors } from "../redux/auth";
 import Spinner from "./Loader/Spinner";
 import Container from "./Container/Container";
-import PrivateRoute from "./PrivateRoute";
-import PublicRoute from "./PublicRoute";
 import AppBar from "./AppBar";
+import NotFoundPage from "./pages/HomeView";
 import "../styles/index.scss";
 
-const HomeView = lazy(() => import("./Views/HomeView"));
-const RegisterView = lazy(() => import("./Views/RegisterView"));
-const LogInView = lazy(() => import("./Views/LogInView"));
-const ContactsView = lazy(() => import("./Views/ContactsView"));
+import HomeView from "./pages/HomeView";
+import RegisterView from "./pages/RegisterView";
+import LogInView from "./pages/LogInView";
+import ContactsView from "./pages/ContactsView";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,41 +31,19 @@ function App() {
         <title>Phonebook</title>
         <meta name="description" content="Contacts Phonebook" />
       </Helmet>
+
       {isFetchingCurrentUser ? (
         <Spinner />
       ) : (
         <>
           <AppBar />
-
-          <Switch>
-            <Suspense fallback={<Spinner />}>
-              <PublicRoute exact path="/">
-                <HomeView />
-              </PublicRoute>
-
-              <PublicRoute
-                exact
-                path="/register"
-                redirectTo="/contacts"
-                restricted
-              >
-                <RegisterView />
-              </PublicRoute>
-
-              <PublicRoute
-                exact
-                path="/login"
-                redirectTo="/contacts"
-                restricted
-              >
-                <LogInView />
-              </PublicRoute>
-
-              <PrivateRoute exact path="/contacts" redirectTo="/login">
-                <ContactsView />
-              </PrivateRoute>
-            </Suspense>
-          </Switch>
+          <Routes>
+            <Route index path="/" element={<HomeView />} />
+            <Route index path="*" element={<NotFoundPage />} />
+            <Route path="login" element={<LogInView />} />
+            <Route path="contacts" element={<ContactsView />} />
+            <Route path="register" element={<RegisterView />} />
+          </Routes>
         </>
       )}
     </Container>

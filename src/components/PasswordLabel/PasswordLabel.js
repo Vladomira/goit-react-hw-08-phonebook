@@ -5,7 +5,7 @@ export function PasswordLabel({ passwordError }) {
         passwordError ? "form__password--error" : "form__password--normal"
       }`}
     >
-      Please type minimum 7 characters
+      Please type minimum 7 characters (letters and numbers)
     </p>
   );
 }

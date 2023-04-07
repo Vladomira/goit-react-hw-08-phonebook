@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { Button } from "react-bootstrap";
 import { authSelectors, authOperations } from "../../redux/auth";
 import defaultAvatar from "./default.jpg";
 
 export default function UserMenu() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const name = useSelector(authSelectors.getUsername);
   const avatar = defaultAvatar;
   return (
@@ -17,7 +19,10 @@ export default function UserMenu() {
           <Button
             variant="outline-primary"
             type="button"
-            onClick={() => dispatch(authOperations.logOut())}
+            onClick={() => {
+              dispatch(authOperations.logOut());
+              navigate("/");
+            }}
             className="user__btn"
           >
             Log out

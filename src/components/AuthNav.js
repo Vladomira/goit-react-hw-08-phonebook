@@ -5,18 +5,16 @@ export default function AuthNav() {
     <nav className="nav__box nav__box--entering">
       <NavLink
         to="/register"
-        exact
         className="nav__item--entering"
-        activeClassName="nav__item--active"
+        activeclassname="nav__item--active"
       >
         Register
       </NavLink>
 
       <NavLink
         to="/login"
-        exact
         className="nav__item--entering"
-        activeClassName="nav__item--active"
+        activeclassname="nav__item--active"
       >
         Log in
       </NavLink>

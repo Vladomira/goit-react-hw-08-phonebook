@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { authSelectors } from "redux/auth";
 import defaultAvatar from "../components/images/phone.png";
@@ -16,9 +17,8 @@ export default function Navigation() {
       <nav className="nav__box">
         <NavLink
           to="/"
-          exact
           className="nav__item "
-          activeClassName="nav__item--active"
+          activeclassname="nav__item--active"
         >
           Home
         </NavLink>
@@ -27,9 +27,8 @@ export default function Navigation() {
           <>
             <NavLink
               to="/contacts"
-              exact
               className="nav__item nav__item--contacts"
-              activeClassName="nav__item--active "
+              activeclassname="nav__item--active "
             >
               Contacts
             </NavLink>
