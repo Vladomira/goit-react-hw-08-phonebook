@@ -1,10 +1,10 @@
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { authSelectors } from "redux/auth";
-import defaultAvatar from "../components/images/phone.png";
+import phoneLogo from "../components/images/phone.png";
 
 export default function Navigation() {
-  const logo = defaultAvatar;
+  const logo = phoneLogo;
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   return (
     <>

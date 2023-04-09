@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
 import { authOperations, authSelectors } from "../redux/auth";
 import Spinner from "./Loader/Spinner";
-import Container from "./Container/Container";
 import AppBar from "./AppBar";
 import NotFoundPage from "./pages/HomeView";
 import "../styles/index.scss";
@@ -26,7 +25,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Container>
+    <>
       <Helmet>
         <title>Phonebook</title>
         <meta name="description" content="Contacts Phonebook" />
@@ -38,7 +37,7 @@ function App() {
         <>
           <Routes>
             <Route path="/" element={<AppBar />}>
-              <Route index path="/" element={<HomeView />} />
+              <Route index element={<HomeView />} />
               <Route index path="*" element={<NotFoundPage />} />
               <Route path="login" element={<LogInView />} />
               <Route path="contacts" element={<ContactsView />} />
@@ -47,7 +46,7 @@ function App() {
           </Routes>
         </>
       )}
-    </Container>
+    </>
   );
 }
 export default App;

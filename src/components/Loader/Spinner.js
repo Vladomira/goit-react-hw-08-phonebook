@@ -4,18 +4,22 @@ import { Component } from "react";
 class Spinner extends Component {
   render() {
     return (
-      <BallTriangle
-        type="BallTriangle"
-        color="#8d125a"
-        height={50}
-        width={50}
-        timeout={3000} //3 secs
+      <div
         style={{
           position: "fixed",
-          top: "30%",
+          top: "50%",
           left: "50%",
+          transform: "translate(-50%, -50%)",
         }}
-      />
+      >
+        <BallTriangle
+          type="BallTriangle"
+          color="#8d125a"
+          height={50}
+          width={50}
+          timeout={3000}
+        />
+      </div>
     );
   }
 }
